@@ -542,13 +542,17 @@ export default AbstractEditController.extend(BloodTypes, ReturnTo, UserSession, 
   },
 
   afterUpdate: function(record) {
-    this.send('openModal', 'dialog', Ember.Object.create({
-      title: 'Patient Saved',
-      message: `The patient record for ${record.get('displayName')} has been saved.`,
-      updateButtonAction: 'returnToPatient',
-      updateButtonText: 'Back to Patient List',
-      cancelButtonText: 'Close'
-    }));
+    // this.send('openModal', 'dialog', Ember.Object.create({
+    //   title: 'Patient Saved',
+    //   message: `The patient record for ${record.get('displayName')} has been saved.`,
+    //   updateButtonAction: 'returnToPatient',
+    //   updateButtonText: 'Back to Patient List',
+    //   cancelButtonText: 'Close'
+    // }));
+    this.notifications.success(`The patient record for ${record.get('displayName')} has been saved.`, {
+      autoClear: true,
+      clearDuration: 1200
+    });
   }
 
 });
